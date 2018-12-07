@@ -57,10 +57,10 @@ exports.default = function (_ref) {
 
     window.addEventListener('storage', function (event) {
       if (!event.newValue) return;
-      if (event.key !== key) return;
+      if (event.key !== storageKeyEntry) return;
 
       try {
-        var mutation = JSON.parse(window.localStorage.getItem(storageKeyEntry));
+        var mutation = JSON.parse(event.newValue);
         committing = true;
         store.commit(mutation.type, mutation.payload);
       } catch (error) {
